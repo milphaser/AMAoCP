@@ -1,6 +1,6 @@
 # AMAoCP
- Active Memory Array of Concurrent Process Concept
- 
+ *** Active Memory Array of Concurrent Processes Concept ***
+
 
 Article: Solving Classical Problem in New Context as Constructive Model of Training
 
