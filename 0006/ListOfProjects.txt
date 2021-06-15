@@ -1,0 +1,40 @@
+*********************************************************************************
+LIST OF PROJECTS/REVISION HISTORY
+*********************************************************************************
+Project Group 0006/AMAoCP
+*********************************************************************************
+Each project has one of the next type of status:
+	Idea
+	Under development
+	Uncompleted
+	Completed
+*********************************************************************************
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++	STAGE 0									+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+0005.0001 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Project Name
+	VectorCopy
+Description
+	Application: Copy of Vectors in AMAoCP
+	0001.VectorCopy.png
+Status:	Idea
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+0005.0002 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Project Name
+	VectorAdd
+Description
+	Application: Addition of Vectors in AMAoCP
+	0002.VectorAdd.png
+
+Status:	Idea
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+0005.0003 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Project Name
+	VectorSorting
+Description
+	Application: Sorting of Vectors in AMAoCP
+	0003.VectorSort.png
+	CompSysTech '21 Paper: Solving Classical Problem in New Context as Constructive Model of Training
+Status:	Idea
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
