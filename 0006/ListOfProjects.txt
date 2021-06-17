@@ -18,7 +18,7 @@ Project Name
 Description
 	Application: Copy of Vectors in AMAoCP
 	0001.VectorCopy.png
-Status:	Idea
+Status:	Under development
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 0005.0002 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Project Name
