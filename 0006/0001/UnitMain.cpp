@@ -69,6 +69,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	//	 Pair2 = {P2 || Q2}
 	//	 Pair3 = {P3 || Q3}
 	//
+	auto tp1 = std::chrono::system_clock::now();    		// timepoint 1
+	//
 	vThreads.push_back(std::thread(doP, 0, std::ref(vSGMemorySrc[0]), chanP0Q0));
 	vThreads.push_back(std::thread(doP, 1, std::ref(vSGMemorySrc[1]), chanP1Q1));
 	vThreads.push_back(std::thread(doP, 2, std::ref(vSGMemorySrc[2]), chanP2Q2));
@@ -93,6 +95,12 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	{
 		std::wstringstream wss;
+
+		auto tp2 = std::chrono::system_clock::now();    		// timepoint 2
+		auto delay = std::chrono::duration_cast<std::chrono::milliseconds>(tp2 - tp1).count();
+		wss << "Run Time: " << delay << ", ms" << std::endl;
+
+		wss << std::endl;
 		wss << "Src" << std::endl;
 
 		for(auto& i: vSGMemoryDst)

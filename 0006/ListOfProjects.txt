@@ -18,6 +18,7 @@ Project Name
 Description
 	Application: Copy of Vectors in AMAoCP
 	0001.VectorCopy.png
+	[csp namespace ver. 0.91RC]
 Status:	Under development
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 0005.0002 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
