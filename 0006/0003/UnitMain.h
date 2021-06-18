@@ -22,6 +22,7 @@ using SINK_PTR = std::shared_ptr<SINK>;
 using MSG = CHAN::MSG;
 //---------------------------------------------------------------------------
 const int N = 4;			// Dimension
+enum class State {INIT, CLR, SRT};
 //---------------------------------------------------------------------------
 // Main functions of system processes
 void doP(int pid, int& x, CHAN_PTR in, CHAN_PTR out);

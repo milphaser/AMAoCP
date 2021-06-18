@@ -41,5 +41,5 @@ Description
 	0003.VectorSortLin.png
 	CompSysTech '21 Paper: Solving Classical Problem in New Context as Constructive Model of Training
 	[csp namespace ver. 0.91RC]
-Status:	Under development
+Status:	Completed
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

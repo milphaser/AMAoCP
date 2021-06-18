@@ -8,7 +8,7 @@
 //		0003.VectorSortLin.png
 //		CompSysTech '21 Paper: Solving Classical Problem in New Context as Constructive Model of Training
 //		[csp namespace ver. 0.91RC]
-//	Status: Under development.
+//	Status: Completed
 /////////////////////////////////////////////////////////////////////////////
 #pragma hdrstop
 #pragma argsused
@@ -64,7 +64,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	////////////////////////////////////////////////////////////////////////////
 	//  PROCESSES
 	////////////////////////////////////////////////////////////////////////////
-	std::vector<int> vSGMemorySrc = {1, 3, 9, 5};   // Unsorted Vector
+	std::vector<int> vSGMemorySrc = {5, 9, 3, 1};   // Unsorted Vector
 	std::vector<int> vSGMemoryDst = {0, 0, 0, 0};   // Sorted Vector
 	std::vector<std::thread> vThreads;
 	//
@@ -138,16 +138,63 @@ int _tmain(int argc, _TCHAR* argv[])
 //  P0 = P1 = P2 = P3 = P
 void doP(int pid, int& x, CHAN_PTR in, CHAN_PTR out)
 {
-//	out->send(src);
+	out->send(x);
+
+	if(in != nullptr)
+	{
+		for(int i = 0; i < pid; i++)
+		{
+			int msg;
+			in->recv(msg);
+			out->send(msg);
+		}
+	}
 }
 //------------------------------------------------------------------------------
 //  Main function of process Q
 //  Q0 = Q1 = Q2 = Q3 = Q
 void doQ(int pid, int& x, CHAN_PTR in, CHAN_PTR out)
 {
-//	int src;
-//	in->recv(src);
-//	dst = src + dst;
+//  OnInit
+//  {e01}
+	int m = 0;                  // messages received
+	State state = State::CLR;   // process state
+	int Var = 0;
+
+	while(true)
+	{
+//      OnReceiptOf <srt, v>
+		int msg;
+		in->recv(msg);
+
+		if(state == State::CLR)
+		{
+//			{e12}
+			state = State::SRT;
+			Var = msg;
+		}
+		else
+		{
+//			{e22}
+			if(Var <= msg)
+			{
+				out->send(msg);
+			}
+			else
+			{
+				out->send(Var);
+                Var = msg;
+			}
+		}
+
+		m++;
+		if(m == (N - pid))
+		{
+//			{e21}
+			x = Var;
+			return;
+		}
+	}
 }
 //------------------------------------------------------------------------------
 

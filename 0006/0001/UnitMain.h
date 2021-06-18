@@ -21,8 +21,6 @@ using SINK_PTR = std::shared_ptr<SINK>;
 
 using MSG = CHAN::MSG;
 //---------------------------------------------------------------------------
-const int N = 4;			// Dimension
-//---------------------------------------------------------------------------
 // Main functions of system processes
 void doP(int pid, int& x, CHAN_PTR out);
 void doQ(int pid, int& x, CHAN_PTR in);
