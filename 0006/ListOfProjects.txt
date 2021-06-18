@@ -17,17 +17,19 @@ Project Name
 	VectorCopy
 Description
 	Application: Copy of Vectors in AMAoCP
+	Traditional "naked" thread implementation with CSP communication.
 	0001.VectorCopy.png
 	[csp namespace ver. 0.91RC]
-Status:	Under development
+Status:	Completed
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 0005.0002 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Project Name
 	VectorAdd
 Description
 	Application: Addition of Vectors in AMAoCP
+	Traditional "naked" thread implementation with CSP communication.
 	0002.VectorAdd.png
-
+	[csp namespace ver. 0.91RC]
 Status:	Idea
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 0005.0003 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -35,7 +37,9 @@ Project Name
 	VectorSorting
 Description
 	Application: Sorting of Vectors in AMAoCP
+	Traditional "naked" thread implementation with CSP communication.
 	0003.VectorSort.png
 	CompSysTech '21 Paper: Solving Classical Problem in New Context as Constructive Model of Training
+	[csp namespace ver. 0.91RC]
 Status:	Idea
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

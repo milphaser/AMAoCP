@@ -4,6 +4,7 @@
 /////////////////////////////////////////////////////////////////////////////
 //	Description
 //		Application: Copy of Vectors in AMAoCP
+//      Traditional "naked" thread implementation with CSP communication.
 //		0001.VectorCopy.png
 //		[csp namespac ver. 0.91RC]
 //	Status: Completed
@@ -70,7 +71,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	//	 Pair3 = {P3 || Q3}
 	//
 	auto tp1 = std::chrono::system_clock::now();    		// timepoint 1
-	//
+
 	vThreads.push_back(std::thread(doP, 0, std::ref(vSGMemorySrc[0]), chanP0Q0));
 	vThreads.push_back(std::thread(doP, 1, std::ref(vSGMemorySrc[1]), chanP1Q1));
 	vThreads.push_back(std::thread(doP, 2, std::ref(vSGMemorySrc[2]), chanP2Q2));
@@ -93,42 +94,39 @@ int _tmain(int argc, _TCHAR* argv[])
 	//
 	////////////////////////////////////////////////////////////////////////////
 
+	auto tp2 = std::chrono::system_clock::now();    		// timepoint 2
+	auto delay = std::chrono::duration_cast<std::chrono::milliseconds>(tp2 - tp1).count();
+
+	std::cout << ">>> End <<<" << '\n' << '\n';
+
+	std::wstringstream wss;
+	wss << "Run Time: " << delay << ", ms" << '\n' << '\n';
+
+	wss << "Src:" << '\n';
+
+	for(auto& i: vSGMemoryDst)
 	{
-		std::wstringstream wss;
-
-		auto tp2 = std::chrono::system_clock::now();    		// timepoint 2
-		auto delay = std::chrono::duration_cast<std::chrono::milliseconds>(tp2 - tp1).count();
-		wss << "Run Time: " << delay << ", ms" << std::endl;
-
-		wss << std::endl;
-		wss << "Src" << std::endl;
-
-		for(auto& i: vSGMemoryDst)
-		{
-			wss << i << std::endl;
-		}
-
-		wss << std::endl;
-		wss << "Dst" << std::endl;
-
-		for(auto& i: vSGMemoryDst)
-		{
-			wss << i << std::endl;
-		}
-
-		std::wcout << wss.str();
-		wof << wss.str();
+		wss << i << '\n';
 	}
+
+	wss << '\n';
+	wss << "Dst:" << '\n';
+
+	for(auto& i: vSGMemoryDst)
+	{
+		wss << i << '\n';
+	}
+
+	std::wcout << wss.str() << '\n';
+	wof << wss.str();
 
 	if(wof.good())
 	{
-		std::wcout << L"The Log saved to <" << fn.str() << L">" << std::endl;
+		std::wcout << L"The Log saved to <" << fn.str() << L">" << '\n';
 	}
 	wof.close();
-	std::cout << ">>> End <<<" << std::endl;
 
 	// "Press any key to continue..."
-	std::cout << std::endl << std::endl;
 	system("pause");
 
 	return 0;
