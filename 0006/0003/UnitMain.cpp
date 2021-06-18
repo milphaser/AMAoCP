@@ -1,13 +1,14 @@
 /////////////////////////////////////////////////////////////////////////////
 //	Project Name
-//      VectorCopy
+//      VectorSortLin
 /////////////////////////////////////////////////////////////////////////////
 //	Description
-//		Application: Copy of Vectors in AMAoCP
-//      Traditional "naked" thread implementation with CSP communication.
-//		0001.VectorCopy.png
-//		[csp namespac ver. 0.91RC]
-//	Status: Completed
+//		Application: Sorting of Vectors in ulAMAoCP
+//		Traditional "naked" thread implementation with CSP communication.
+//		0003.VectorSortLin.png
+//		CompSysTech '21 Paper: Solving Classical Problem in New Context as Constructive Model of Training
+//		[csp namespace ver. 0.91RC]
+//	Status: Under development.
 /////////////////////////////////////////////////////////////////////////////
 #pragma hdrstop
 #pragma argsused
@@ -48,39 +49,40 @@ int _tmain(int argc, _TCHAR* argv[])
 	////////////////////////////////////////////////////////////////////////////
 	//
 	//  Channels
-	auto chanP0Q0 = std::make_shared<CHAN>(L"P0Q0");
-	auto chanP1Q1 = std::make_shared<CHAN>(L"P1Q1");
-	auto chanP2Q2 = std::make_shared<CHAN>(L"P2Q2");
-	auto chanP3Q3 = std::make_shared<CHAN>(L"P3Q3");
+	auto chanP0P1 = std::make_shared<CHAN>(L"P0P1");
+	auto chanP1P2 = std::make_shared<CHAN>(L"P1P2");
+	auto chanP2P3 = std::make_shared<CHAN>(L"P2P3");
+	auto chanP3Q0 = std::make_shared<CHAN>(L"P3Q0");
+	auto chanQ0Q1 = std::make_shared<CHAN>(L"Q0Q1");
+	auto chanQ1Q2 = std::make_shared<CHAN>(L"Q1Q2");
+	auto chanQ2Q3 = std::make_shared<CHAN>(L"Q2Q3");
 	////////////////////////////////////////////////////////////////////////////
 
-	std::cout << ">>> Application: Copy of Vectors in AMAoCP" << std::endl;
+	std::cout << ">>> Application: Sorting of Vectors in ulAMAoCP" << std::endl;
 	std::cout << "<<< Run >>>" << std::endl;
 
 	////////////////////////////////////////////////////////////////////////////
 	//  PROCESSES
 	////////////////////////////////////////////////////////////////////////////
-	std::vector<int> vSGMemorySrc = {100, 101, 102, 103};
-	std::vector<int> vSGMemoryDst = {0, 0, 0, 0};
+	std::vector<int> vSGMemorySrc = {1, 3, 9, 5};   // Unsorted Vector
+	std::vector<int> vSGMemoryDst = {0, 0, 0, 0};   // Sorted Vector
 	std::vector<std::thread> vThreads;
 	//
-	//	 S = {Pair0 || Pair1 || Pair2 || Pair3}
-	//	 Pair0 = {P0 || Q0}
-	//	 Pair1 = {P1 || Q1}
-	//	 Pair2 = {P2 || Q2}
-	//	 Pair3 = {P3 || Q3}
+	//	 S = {GatherGroup || ScatterGroup}
+	//	 GatherGroup = {P0 || P1 || P2 || P3}
+	//	 ScatterGroup = {Q0 || Q1 || Q2 || Q3}
 	//
 	auto tp1 = std::chrono::system_clock::now();    		// timepoint 1
 
-	vThreads.push_back(std::thread(doP, 0, std::ref(vSGMemorySrc[0]), chanP0Q0));
-	vThreads.push_back(std::thread(doP, 1, std::ref(vSGMemorySrc[1]), chanP1Q1));
-	vThreads.push_back(std::thread(doP, 2, std::ref(vSGMemorySrc[2]), chanP2Q2));
-	vThreads.push_back(std::thread(doP, 3, std::ref(vSGMemorySrc[3]), chanP3Q3));
+	vThreads.push_back(std::thread(doP, 0, std::ref(vSGMemorySrc[0]), nullptr, chanP0P1));
+	vThreads.push_back(std::thread(doP, 1, std::ref(vSGMemorySrc[1]), chanP0P1, chanP1P2));
+	vThreads.push_back(std::thread(doP, 2, std::ref(vSGMemorySrc[2]), chanP1P2, chanP2P3));
+	vThreads.push_back(std::thread(doP, 3, std::ref(vSGMemorySrc[3]), chanP2P3, chanP3Q0));
 	//
-	vThreads.push_back(std::thread(doQ, 0, std::ref(vSGMemoryDst[0]), chanP0Q0));
-	vThreads.push_back(std::thread(doQ, 1, std::ref(vSGMemoryDst[1]), chanP1Q1));
-	vThreads.push_back(std::thread(doQ, 2, std::ref(vSGMemoryDst[2]), chanP2Q2));
-	vThreads.push_back(std::thread(doQ, 3, std::ref(vSGMemoryDst[3]), chanP3Q3));
+	vThreads.push_back(std::thread(doQ, 0, std::ref(vSGMemoryDst[0]), chanP3Q0, chanQ0Q1));
+	vThreads.push_back(std::thread(doQ, 1, std::ref(vSGMemoryDst[1]), chanQ0Q1, chanQ1Q2));
+	vThreads.push_back(std::thread(doQ, 2, std::ref(vSGMemoryDst[2]), chanQ1Q2, chanQ2Q3));
+	vThreads.push_back(std::thread(doQ, 3, std::ref(vSGMemoryDst[3]), chanQ2Q3, nullptr));
 	//
 	////////////////////////////////////////////////////////////////////////////
 	//
@@ -134,18 +136,18 @@ int _tmain(int argc, _TCHAR* argv[])
 //------------------------------------------------------------------------------
 //  Main function of process P
 //  P0 = P1 = P2 = P3 = P
-void doP(int pid, int& x, CHAN_PTR out)
+void doP(int pid, int& x, CHAN_PTR in, CHAN_PTR out)
 {
-	// P = {Q ! x}
-	out->send(x);
+//	out->send(src);
 }
 //------------------------------------------------------------------------------
 //  Main function of process Q
 //  Q0 = Q1 = Q2 = Q3 = Q
-void doQ(int pid, int& x, CHAN_PTR in)
+void doQ(int pid, int& x, CHAN_PTR in, CHAN_PTR out)
 {
-	// Q = {P ? x}
-	in->recv(x);
+//	int src;
+//	in->recv(src);
+//	dst = src + dst;
 }
 //------------------------------------------------------------------------------
 

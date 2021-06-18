@@ -133,7 +133,7 @@ int _tmain(int argc, _TCHAR* argv[])
 }
 //------------------------------------------------------------------------------
 //  Main function of process P
-//  P1 = P2 = P3 = P4 = P
+//  P0 = P1 = P2 = P3 = P
 void doP(int pid, int& x, CHAN_PTR out)
 {
 	// P = {Q ! x}
@@ -141,7 +141,7 @@ void doP(int pid, int& x, CHAN_PTR out)
 }
 //------------------------------------------------------------------------------
 //  Main function of process Q
-//  Q1 = Q2 = Q3 = Q4 = Q
+//  Q0 = Q1 = Q2 = Q3 = Q
 void doQ(int pid, int& x, CHAN_PTR in)
 {
 	// Q = {P ? x}

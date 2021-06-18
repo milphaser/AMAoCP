@@ -34,12 +34,12 @@ Status:	Completed
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 0005.0003 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Project Name
-	VectorSorting
+	VectorSortLin
 Description
-	Application: Sorting of Vectors in AMAoCP
+	Application: Sorting of Vectors in ulAMAoCP
 	Traditional "naked" thread implementation with CSP communication.
-	0003.VectorSort.png
+	0003.VectorSortLin.png
 	CompSysTech '21 Paper: Solving Classical Problem in New Context as Constructive Model of Training
 	[csp namespace ver. 0.91RC]
-Status:	Idea
+Status:	Under development
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
