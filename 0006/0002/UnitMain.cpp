@@ -134,20 +134,20 @@ int _tmain(int argc, _TCHAR* argv[])
 //------------------------------------------------------------------------------
 //  Main function of process P
 //  P1 = P2 = P3 = P4 = P
-void doP(int pid, int& src, CHAN_PTR out)
+void doP(int pid, int& x, CHAN_PTR out)
 {
-	// P = {Q ! src}
-	out->send(src);
+	// P = {Q ! x}
+	out->send(x);
 }
 //------------------------------------------------------------------------------
 //  Main function of process Q
 //  Q1 = Q2 = Q3 = Q4 = Q
-void doQ(int pid, int& dst, CHAN_PTR in)
+void doQ(int pid, int& x, CHAN_PTR in)
 {
-	// Q = {P ? dst}
+	// Q = {P ? x}
 	int src;
 	in->recv(src);
-	dst = src + dst;
+	x = x + src;
 }
 //------------------------------------------------------------------------------
 
