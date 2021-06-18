@@ -1,11 +1,11 @@
 /////////////////////////////////////////////////////////////////////////////
 //	Project Name
-//      VectorCopy
+//      VectorAdd
 /////////////////////////////////////////////////////////////////////////////
 //	Description
-//		Application: Copy of Vectors in AMAoCP
-//      Traditional "naked" thread implementation with CSP communication.
-//		0001.VectorCopy.png
+//		Application: Addition of Vectors in AMAoCP
+//		Traditional "naked" thread implementation with CSP communication.
+//		0002.VectorAdd.png
 //		[csp namespac ver. 0.91RC]
 //	Status: Completed
 /////////////////////////////////////////////////////////////////////////////
@@ -54,14 +54,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	auto chanP3Q3 = std::make_shared<CHAN>(L"P3Q3");
 	////////////////////////////////////////////////////////////////////////////
 
-	std::cout << ">>> Application: Copy of Vectors in AMAoCP" << std::endl;
+	std::cout << ">>> Application: Addition of Vectors in AMAoCP" << std::endl;
 	std::cout << "<<< Run >>>" << std::endl;
 
 	////////////////////////////////////////////////////////////////////////////
 	//  PROCESSES
 	////////////////////////////////////////////////////////////////////////////
-	std::vector<int> vSGMemorySrc = {100, 101, 102, 103};
-	std::vector<int> vSGMemoryDst = {0, 0, 0, 0};
+	std::vector<int> vSGMemorySrc = {100, 101, 102, 103};   // Src2
+	std::vector<int> vSGMemoryDst = {900, 899, 898, 897};   // Src1/Dst
 	std::vector<std::thread> vThreads;
 	//
 	//	 S = {Pair0 || Pair1 || Pair2 || Pair3}
@@ -102,7 +102,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	std::wstringstream wss;
 	wss << "Run Time: " << delay << ", ms" << '\n' << '\n';
 
-	wss << "Src:" << '\n';
+	wss << "Src2:" << '\n';
 
 	for(auto& i: vSGMemorySrc)
 	{
@@ -145,7 +145,9 @@ void doP(int pid, int& src, CHAN_PTR out)
 void doQ(int pid, int& dst, CHAN_PTR in)
 {
 	// Q = {P ? dst}
-	in->recv(dst);
+	int src;
+	in->recv(src);
+	dst = src + dst;
 }
 //------------------------------------------------------------------------------
 

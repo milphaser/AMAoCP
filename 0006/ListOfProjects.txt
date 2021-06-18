@@ -30,7 +30,7 @@ Description
 	Traditional "naked" thread implementation with CSP communication.
 	0002.VectorAdd.png
 	[csp namespace ver. 0.91RC]
-Status:	Idea
+Status:	Completed
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 0005.0003 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Project Name
